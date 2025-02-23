@@ -305,15 +305,15 @@ function showToast() {
 }
 
 //* Add Cart
-async function addCart(productID) {
+async function addCart(productID, maxQuantity) {
   if ($(".image-mau.active").attr("id") != undefined) {
     productID = $(".image-mau.active").attr("id");
   }
   const size = $(".select-size span").text().trim();
   const quantity = $("#number-sp").val() * 1;
   try {
-    if (document.cookie) {
-      if ($(".select-qty p").text().length > 0 && size != "Vui lòng chọn") {
+    if ($(".select-qty p").text().length > 0 && size != "Vui lòng chọn") {
+      if (quantity < maxQuantity * 1) {
         await $.ajax({
           type: "POST",
           url: "/cart/create",
@@ -324,11 +324,12 @@ async function addCart(productID) {
           },
         });
         showToast();
-      } else {
-        $(".toast-error").text("Vui lòng chọn đầy đủ thông tin sản phẩm");
-      }
+      } else
+        $(".toast-error").text(
+          "Số lượng bạn thêm vào giỏ đã vượt quá số lượng tối đa trong kho"
+        );
     } else {
-      window.location.href = "/login";
+      $(".toast-error").text("Vui lòng chọn đầy đủ thông tin sản phẩm");
     }
   } catch (error) {
     console.log(error);
@@ -336,15 +337,15 @@ async function addCart(productID) {
 }
 
 // * Buy now
-async function buyNow(productID) {
+async function buyNow(productID, maxQuantity) {
   if ($(".image-mau.active").attr("id") != undefined) {
     productID = $(".image-mau.active").attr("id");
   }
   const size = $(".select-size span").text().trim();
   const quantity = $("#number-sp").val() * 1;
   try {
-    if (document.cookie) {
-      if ($(".select-qty p").text().length > 0 && size != "Vui lòng chọn") {
+    if ($(".select-qty p").text().length > 0 && size != "Vui lòng chọn") {
+      if (quantity < maxQuantity * 1) {
         await $.ajax({
           type: "POST",
           url: "/cart/create",
@@ -356,11 +357,12 @@ async function buyNow(productID) {
           },
         });
         window.location.href = "/cart";
-      } else {
-        $(".toast-error").text("Vui lòng chọn đầy đủ thông tin sản phẩm");
-      }
+      } else
+        $(".toast-error").text(
+          "Số lượng sản phẩm bạn mua đã vượt quá số lượng tối đa trong kho"
+        );
     } else {
-      window.location.href = "/login";
+      $(".toast-error").text("Vui lòng chọn đầy đủ thông tin sản phẩm");
     }
   } catch (error) {
     console.log(error);

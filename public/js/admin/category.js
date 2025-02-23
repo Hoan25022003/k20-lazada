@@ -52,15 +52,15 @@ async function but(page) {
 }
 
 async function addCategory() {
+  const name = $("#name").val();
   try {
-    const name = $("#name").val();
     const thumbnail = $("#clickavatar").val();
     console.log(name);
     if (name == "") {
       $(".note1").html("Vui lòng điền tên phân loại !");
     }
     if (thumbnail == "") {
-      $(".note2").html("Vui lòng nhận phải ảnh phân loại !");
+      $(".note2").html("Vui lòng chọn ảnh danh mục!");
     } else {
       const form = $("form")[0];
       const formData = new FormData(form);

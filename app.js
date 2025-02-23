@@ -11,6 +11,9 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 app.use("/user", require("./routers/userRouter"));
+// /user
+// GET, POST, PUT, DELETE
+// postman
 
 app.use("/cart", require("./routers/cartRouter"));
 

@@ -135,14 +135,14 @@
               <div class="order">
                 <button
                   class="mua-ngay"
-                  onclick="buyNow('<%= listData[0]._id %>')"
+                  onclick="buyNow('<%= listData[0]._id %>', '<%= listData[0].quantity %>')"
                 >
                   Mua ngay
                 </button>
                 <button
                   class="them-vao-cart"
                   id="liveToastBtn"
-                  onclick="addCart('<%= listData[0]._id %>')"
+                  onclick="addCart('<%= listData[0]._id %>', '<%= listData[0].quantity %>')"
                 >
                   Thêm vào giỏ hàng
                 </button>

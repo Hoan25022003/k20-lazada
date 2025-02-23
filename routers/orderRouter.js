@@ -4,7 +4,6 @@ const CartModel = require("../models/cartModel");
 const OrderModel = require("../models/orderModel");
 const { checkLogin } = require("../middleWare/checkLogin");
 const CategoryModel = require("../models/category");
-const { default: axios } = require("axios");
 const paypal = require("paypal-rest-sdk");
 
 paypal.configure({
